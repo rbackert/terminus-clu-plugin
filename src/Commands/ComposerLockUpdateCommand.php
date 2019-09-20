@@ -77,7 +77,7 @@ class ComposerLockUpdateCommand extends BuildToolsBase {
     // Determine whether there is an existing open PR with Composer updates
     $existing_PR_branch = $this->checkExistingPRBranch('branch');
     if ($existing_PR_branch) {
-      $initial_branch = $this->passthru("git -C {$this->working_dir} rev-parse --abbrev-ref HEAD");
+      $initial_branch = $this->exec("git -C {$this->working_dir} rev-parse --abbrev-ref HEAD");
       $this->passthru("git -C {$this->working_dir} fetch");
       $this->passthru("git -C {$this->working_dir} checkout $existing_PR_branch");
 
@@ -170,7 +170,7 @@ EOT;
    */
   protected function runComposerUpdate() {
     $args = getenv('CLU_COMPOSER_UPDATE_ARGS') ?: '--no-progress --no-dev --no-interaction';
-    return $this->passthru("composer update --working-dir={$this->working_dir} $args 2>&1 | tee {$this->working_dir}/vendor/update.log");
+    return $this->exec("composer update --working-dir={$this->working_dir} $args 2>&1 | tee {$this->working_dir}/vendor/update.log");
   }
 
   /**
@@ -179,7 +179,7 @@ EOT;
    * @return boolean
    */
   protected function checkComposerLock() {
-    $output = $this->passthru("git -C {$this->working_dir} status -s composer.lock");
+    $output = $this->exec("git -C {$this->working_dir} status -s composer.lock");
     if (empty($output)) {
       $this->log()->notice('No changes detected to composer.lock');
       return FALSE;
@@ -202,7 +202,7 @@ EOT;
     if (!$this->cluProvider->closePullRequest($this->target_project, $number)) {
       throw new TerminusException('Failed to close existing composer lock update PR');
     }
-    $this->passthru("git -C {$this->working_dir} push origin --delete $branch_name");
+    $this->exec("git -C {$this->working_dir} push origin --delete $branch_name");
     $this->log()->info("Closed existing PR {number} and branch {branch}", ['number' => $number, 'branch' => $branch_name]);
   }
 
