@@ -98,7 +98,7 @@ class ComposerLockUpdateCommand extends BuildToolsBase {
     $this->runComposerInstall();
 
     // Run composer update, but capture output for the commit message if needed.
-    $update_message = $this->runComposerUpdate();
+    $update_message = implode(PHP_EOL, $this->runComposerUpdate());
 
     // Check whether composer.lock was modifed.
     if ( ! $this->checkComposerLock() ) {
