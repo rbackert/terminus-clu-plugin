@@ -1,0 +1,31 @@
+{
+  "name": "aaronbauman/terminus-bitbucket-plugin",
+  "description": "Terminus build tools-based Bitbucket client",
+  "homepage": "https://github.com/aaronbauman/terminus-bitbucket-plugin",
+  "authors": [
+    {
+      "name": "Aaron Bauman",
+      "email": "aaron@messageagency.com",
+      "role": "Developer"
+    }
+  ],
+  "license": "MIT",
+  "type": "terminus-plugin",
+  "require": {
+    "php": ">=5.4",
+    "pantheon-systems/terminus-build-tools-plugin": "^2.0.0-beta16"
+  },
+  "require-dev": {
+    "pantheon-systems/terminus": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pantheon\\TerminusClu\\": "src"
+    }
+  },
+  "extra": {
+    "terminus": {
+      "compatible-version": "^2.0"
+    }
+  }
+}
