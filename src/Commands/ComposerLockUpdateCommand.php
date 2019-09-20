@@ -60,7 +60,8 @@ class ComposerLockUpdateCommand extends BuildToolsBase {
     // Create a working directory
     $this->working_dir = $this->tempdir('local-site');
 
-    $this->passthru("git clone $url {$this->working_dir}");
+    $this->cluProvider->cloneRepository($this->target_project, $this->working_dir);
+
     // Check if there are any security advisories for any of the
     // versions of any of our dependencies in use right now.
     $security_message = $this->checkSensiolabsSecurity($this->working_dir . '/composer.lock', $is_vulnerable);

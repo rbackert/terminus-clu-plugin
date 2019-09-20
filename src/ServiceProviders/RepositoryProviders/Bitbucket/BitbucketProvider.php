@@ -7,6 +7,12 @@ use Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitProvider;
 
 class BitbucketProvider extends BuildToolsBitbucketProvider implements GitProvider {
 
+  public function cloneRepository($target_project, $destination) {
+    $bitbucket_token = $this->token();
+    $remote_url = "https://$bitbucket_token@bitbucket.org/${target_project}.git";
+    $this->execWithRedaction("git clone {remote} $destination", ['remote' => $remote_url], ['remote' => $target_project]);
+  }
+
   public function closePullRequest($target_project, $id) {
     $this->logger
       ->notice("Closing PR {id} on {project}", [

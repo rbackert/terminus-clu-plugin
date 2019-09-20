@@ -10,4 +10,5 @@ use Pantheon\TerminusBuildTools\ServiceProviders\RepositoryProviders\GitProvider
 interface GitProvider extends BuildToolsGitProvider {
   public function closePullRequest($target_project, $id);
   public function createPullRequest($target_project, $source_branch, $title, array $options = []);
+  public function cloneRepository($target_project, $destination);
 }
