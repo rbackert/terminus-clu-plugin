@@ -161,7 +161,7 @@ EOT;
    * Runs `composer install`.
    */
   protected function runComposerInstall() {
-    $args = getenv('CLU_COMPOSER_INSTALL_ARGS') ?: '--no-dev --no-interaction --prefer-source';
+    $args = getenv('CLU_COMPOSER_INSTALL_ARGS') ?: '--no-dev --no-interaction';
     return $this->passthru("composer install --working-dir={$this->working_dir} $args");
   }
 
