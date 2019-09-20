@@ -162,8 +162,7 @@ EOT;
    */
   protected function runComposerInstall() {
     $args = getenv('CLU_COMPOSER_INSTALL_ARGS') ?: '--no-dev --no-interaction --prefer-source';
-    $this->passthru("env | sort");
-    return $this->passthru("/Users/bauman/Sites/contributions/composer/bin/composer install --working-dir={$this->working_dir} $args");
+    return $this->passthru("composer install --working-dir={$this->working_dir} $args");
   }
 
   /**
@@ -171,7 +170,7 @@ EOT;
    */
   protected function runComposerUpdate() {
     $args = getenv('CLU_COMPOSER_UPDATE_ARGS') ?: '--no-progress --no-dev --no-interaction';
-    return $this->passthru("/Users/bauman/Sites/contributions/composer/bin/composer update --working-dir={$this->working_dir} $args 2>&1 | tee {$this->working_dir}/vendor/update.log");
+    return $this->passthru("composer update --working-dir={$this->working_dir} $args 2>&1 | tee {$this->working_dir}/vendor/update.log");
   }
 
   /**
