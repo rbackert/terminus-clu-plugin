@@ -7,10 +7,12 @@ Depends on Terminus Build Tools, and only works for a Build Tools managed site.
 
 ## Installation
 
-`cd ~/.terminus/plugins && git clone https://github.com/aaronbauman/terminus-clu-plugin.git` 
+- `cd ~/.terminus/plugins`
+- `git clone https://github.com/pantheon-systems/terminus-clu-plugin.git` 
+- `cd terminus-clu-plugin`
+- `composer install --no-dev`
 
 ## Commands
-
 
 `terminus project:clu`
 
