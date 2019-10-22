@@ -152,6 +152,10 @@ EOT;
     $prs = $this->git_provider->branchesForPullRequests($this->target_project, 'open');
     foreach ($prs as $id => $branch) {
       if (preg_match('/^clu-[0-9-]+/', $branch)) {
+        $this->logger
+        ->notice("Found existing CLU branch: {branch}", [
+          "branch" => $branch
+        ]);
         return $type == 'branch' ? $branch : $id;
       }
     }
