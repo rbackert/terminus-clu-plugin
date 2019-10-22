@@ -1,11 +1,16 @@
 {
-  "name": "aaronbauman/terminus-bitbucket-plugin",
-  "description": "Terminus build tools-based Bitbucket client",
-  "homepage": "https://github.com/aaronbauman/terminus-bitbucket-plugin",
+  "name": "pantheon-systems/terminus-clu-plugin",
+  "description": "Terminus plugin for updating Composer dependencies",
+  "homepage": "https://github.com/pantheon-systems/terminus-clu-plugin",
   "authors": [
     {
       "name": "Aaron Bauman",
       "email": "aaron@messageagency.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Andrew Taylor",
+      "email": "andrew@pantheon.io",
       "role": "Developer"
     }
   ],
