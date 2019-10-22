@@ -14,7 +14,7 @@ trait CluGitTrait {
     }
     $provider = new $git_provider_class_or_alias($this->config);
     if (!$provider instanceof GitProvider) {
-      throw new \Exception("Requested provider $git_provider_class_or_alias does not implement required interface Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\Bitbucket\GitProvider");
+      throw new \Exception("Requested provider $git_provider_class_or_alias does not implement required interface Pantheon\TerminusBuildTools\ServiceProviders\RepositoryProviders\GitProvider");
     }
     $provider->setLogger($this->logger);
     $this->providerManager()->credentialManager()->add($provider->credentialRequests());
