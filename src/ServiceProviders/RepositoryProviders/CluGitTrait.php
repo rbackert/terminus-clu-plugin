@@ -28,7 +28,7 @@ trait CluGitTrait {
    * @throws \Exception
    */
   public function inferGitCluProviderFromUrl($url) {
-    if (strpos($url, 'bitbucket')) {
+    if (false !== strpos($url, 'bitbucket')) {
       return $this->createGitCluProvider('\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\Bitbucket\BitbucketProvider');
     }
   }
