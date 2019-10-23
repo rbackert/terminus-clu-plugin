@@ -16,7 +16,7 @@ class PullRequestCreateCommand extends BuildToolsBase {
   use CluGitTrait;
 
   /**
-   * List pull requests.
+   * Creates a new pull request.
    *
    * @authorize
    *
@@ -31,20 +31,21 @@ class PullRequestCreateCommand extends BuildToolsBase {
    *   site.env or --source must be specified.
    *
    * @option string $target The target branch into which the PR will be merged.
-   *   If not give, defaults to repository.mainbranch.
+   *   Defaults to repository.mainbranch on BitBucket and the default branch on GitHub and GitLab.
    *
    * @option string $title Short title for the pull request.
+   *  Required
    *
    * @option string $description Extended description of the pull request.
    *   Defaults to null.
    *
    * @options string $reviewers Comma-separated list of UUIDs of reviewers to
-   *   be assigned. Defaults to null.
+   *   be assigned. Defaults to null. Available on BitBucket, not available on GitHub or GitLab.
    *
    * @options bool $close Whether to close the source branch upon merging.
-   *   Defaults to FALSE.
+   *   Defaults to FALSE. Available on BitBucket and GitLab, not available on GitHub.
    *
-   * @usage <site> Lists open pull requests for <site>.
+   * @usage <site>.<env> Creates a new pull request from <site>.<env>.
    *
    */
   public function createPullRequest($site_name_or_site_env_id, $options = [
