@@ -58,7 +58,7 @@ class PullRequestListCommand extends BuildToolsBase {
     // Ensure that credentials for the Git provider are available
     $this->providerManager()->validateCredentials();
 
-    return $this->rowsOfFieldsFromPullRequestData($this->git_provider->branchesForPullRequests($target_project, $state));
+    return $this->rowsOfFieldsFromPullRequestData($this->git_provider->branchesForPullRequests($target_project, $state), null, 'branch');
   }
 
   protected function rowsOfFieldsFromPullRequestData($data) {
