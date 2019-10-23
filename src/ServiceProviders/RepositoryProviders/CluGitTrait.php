@@ -12,6 +12,8 @@ trait CluGitTrait {
           break;
         case 'gitlab':
           $git_provider_class_or_alias = '\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitLab\GitLabProvider';
+        case 'github':
+          $git_provider_class_or_alias = '\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitHub\GitHubProvider';
           break;
       }
     }
@@ -36,6 +38,9 @@ trait CluGitTrait {
     }
     if (false !== strpos($url, 'gitlab')) {
       return $this->createGitCluProvider('\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitLab\GitLabProvider');
+    }
+    if (false !== strpos($url, 'github')) {
+      return $this->createGitCluProvider('\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitHub\GitHubProvider');
     }
   }
 
