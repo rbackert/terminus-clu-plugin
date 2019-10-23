@@ -67,11 +67,9 @@ class GitLabProvider extends BuildToolsGitLabProvider implements GitProvider {
       $postData['target_branch'] = $project_details['default_branch'];
     }
 
-    if (!empty($reviewers)) {
-      // GitLab doesn't have reviewers
-      // See https://docs.gitlab.com/ee/api/merge_requests.html#create-mr
-      unset($options['reviewers']);
-    }
+    // GitLab doesn't have reviewers
+    // See https://docs.gitlab.com/ee/api/merge_requests.html#create-mr
+    unset($options['reviewers']);
 
     $postData['remove_source_branch'] = !empty($options['close']) ? TRUE : FALSE;
     unset($options['close']);
