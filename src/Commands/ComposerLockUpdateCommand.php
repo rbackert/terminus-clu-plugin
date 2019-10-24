@@ -149,9 +149,13 @@ EOT;
    * @return string|int|void
    */
   protected function checkExistingPRBranch($type) {
-    $prs = $this->git_provider->branchesForPullRequests($this->target_project, 'open');
+    $prs = $this->git_provider->branchesForPullRequests($this->target_project, 'open', null, 'branch');
     foreach ($prs as $id => $branch) {
       if (preg_match('/^clu-[0-9-]+/', $branch)) {
+        $this->logger
+        ->notice("Found existing CLU branch: {branch}", [
+          "branch" => $branch
+        ]);
         return $type == 'branch' ? $branch : $id;
       }
     }

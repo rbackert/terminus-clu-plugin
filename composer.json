@@ -18,10 +18,10 @@
   "type": "terminus-plugin",
   "require": {
     "php": ">=5.4",
-    "pantheon-systems/terminus-build-tools-plugin": "^2.0.0-beta16"
+    "pantheon-systems/terminus-build-tools-plugin": "2.0.0-beta17"
   },
   "require-dev": {
-    "pantheon-systems/terminus": "^2.1"
+    "pantheon-systems/terminus": "^2.2"
   },
   "autoload": {
     "psr-4": {
