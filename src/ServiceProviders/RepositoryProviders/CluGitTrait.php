@@ -12,6 +12,7 @@ trait CluGitTrait {
           break;
         case 'gitlab':
           $git_provider_class_or_alias = '\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitLab\GitLabProvider';
+          break;
         case 'github':
           $git_provider_class_or_alias = '\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitHub\GitHubProvider';
           break;
