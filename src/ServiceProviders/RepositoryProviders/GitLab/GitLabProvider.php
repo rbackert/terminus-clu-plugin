@@ -9,7 +9,8 @@ class GitLabProvider extends BuildToolsGitLabProvider implements GitProvider {
 
   public function cloneRepository($target_project, $destination) {
     $gitlab_token = $this->token();
-    $remote_url = "https://gitlab-ci-token:$gitlab_token@gitlab.com/${target_project}.git";
+    $gitlab_url = $this->getGitLabUrl();
+    $remote_url = "https://gitlab-ci-token:$gitlab_token@$gitlab_url/${target_project}.git";
     $this->execWithRedaction("git clone {remote} $destination", ['remote' => $remote_url], ['remote' => $target_project]);
   }
 
