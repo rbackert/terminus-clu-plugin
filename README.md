@@ -18,6 +18,8 @@ Depends on Terminus Build Tools, and only works for a Build Tools managed site.
 
 also available:
 
+`terminus project:clu:git <https git repository url with username and token>`
+
 `terminus project:pull-request:list`
 
 `terminus project:pull-request:create`
