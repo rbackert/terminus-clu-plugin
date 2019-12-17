@@ -77,7 +77,7 @@ class ComposerLockUpdateCommand extends BuildToolsBase {
     // Determine whether there is an existing open PR with Composer updates
     $existing_PR_branch = $this->checkExistingPRBranch('branch');
     if ($existing_PR_branch) {
-      $initial_branch = $this->exec("git -C {$this->working_dir} rev-parse --abbrev-ref HEAD");
+      $initial_branch = reset( $this->exec("git -C {$this->working_dir} rev-parse --abbrev-ref HEAD") );
       $this->passthru("git -C {$this->working_dir} fetch");
       $this->passthru("git -C {$this->working_dir} checkout $existing_PR_branch");
 
@@ -91,7 +91,7 @@ class ComposerLockUpdateCommand extends BuildToolsBase {
 
       // Check out the initial branch locally and delete the local PR branch.
       $this->passthru("git -C {$this->working_dir} checkout -f $initial_branch");
-      $this->passthru("git -C {$this->workind_dir} branch -D $existing_PR_branch");
+      $this->passthru("git -C {$this->working_dir} branch -D $existing_PR_branch");
     }
 
     // Perform an initial install to sanity check the package.
