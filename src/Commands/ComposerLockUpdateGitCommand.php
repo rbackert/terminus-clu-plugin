@@ -62,7 +62,7 @@ class ComposerLockUpdateGitCommand extends ComposerLockUpdateCommand {
 
 			// Check out the initial branch locally and delete the local PR branch.
 			$this->passthru( "git -C {$this->working_dir} checkout -f $initial_branch" );
-			$this->passthru( "git -C {$this->workind_dir} branch -D $existing_PR_branch" );
+			$this->passthru( "git -C {$this->working_dir} branch -D $existing_PR_branch" );
 		}
 
 		// Perform an initial install to sanity check the package.
