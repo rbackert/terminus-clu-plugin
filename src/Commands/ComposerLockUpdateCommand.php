@@ -122,18 +122,18 @@ EOT;
     $this->cluProvider->createPullRequest($this->target_project, $branch_name, $title, ['description' => $description]);
   }
 
-    /**
+  /**
    * Check for composer dependency updates and create a PR if applicable, based on a Git repository url.
    *
    * @command project:clu:git
    *
    * @aliases pr-clu-git clu-git
-   * 
+   *
    * @param string $git_url Git repository url.
    *
    * @option bool $security-only If given, check only for security updates.
    *
-   * @usage <site> Create a composer.lock pull request if applicable.
+   * @usage <url> Create a composer.lock pull request if applicable.
    *
    */
   public function composerLockUpdateGit($git_url, $options = ['security-only' => FALSE]) {
