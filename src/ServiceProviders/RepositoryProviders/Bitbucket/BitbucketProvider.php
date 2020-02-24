@@ -39,7 +39,7 @@ class BitbucketProvider extends BuildToolsBitbucketProvider implements GitProvid
       unset($options['target']);
     }
 
-    if (!empty($reviewers)) {
+    if (!empty($options['reviewers'])) {
       $rev = $options['reviewers'];
       $postData['reviewers'] = [];
       foreach ($rev as $reviewer) {
