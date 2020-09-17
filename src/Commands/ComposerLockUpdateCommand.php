@@ -174,7 +174,7 @@ EOT;
    */
   protected function runComposerUpdate() {
     $args = getenv('CLU_COMPOSER_UPDATE_ARGS') ?: '--no-progress --no-dev --no-interaction';
-    return $this->exec("composer update --working-dir={$this->working_dir} $args 2>&1 | tee {$this->working_dir}/vendor/update.log");
+    return $this->exec("set -o pipefail && composer update --working-dir={$this->working_dir} $args 2>&1 | tee {$this->working_dir}/vendor/update.log");
   }
 
   /**
