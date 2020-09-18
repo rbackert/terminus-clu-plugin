@@ -172,10 +172,21 @@ EOT;
 
   /**
    * Runs `composer update`.
+   *
+   * Note: we call exec() directly, instead of parent::exec because we want to
+   * capture command output for any exceptions.
    */
   protected function runComposerUpdate() {
     $args = getenv('CLU_COMPOSER_UPDATE_ARGS') ?: '--no-progress --no-dev --no-interaction';
-    return $this->exec("set -o pipefail && composer update --working-dir={$this->working_dir} $args 2>&1 | tee {$this->working_dir}/vendor/update.log");
+    $command = "composer update --working-dir={$this->working_dir} $args 2>&1";
+    $result = 0;
+    $this->log()->notice("Running {cmd}", ['cmd' => $command]);
+    exec($command, $outputLines, $result);
+    if ($result != 0) {
+      throw new TerminusException('Command `{command}` failed with exit code {status} and output {output}', ['command' => $command, 'status' => $result, 'output' => implode(PHP_EOL, $outputLines)]);
+    }
+    file_put_contents("{$this->working_dir}/vendor/update.log", $outputLines);
+    return $outputLines;
   }
 
   /**
