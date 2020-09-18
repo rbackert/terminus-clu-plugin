@@ -77,7 +77,8 @@ class ComposerLockUpdateCommand extends BuildToolsBase {
     // Determine whether there is an existing open PR with Composer updates
     $existing_PR_branch = $this->checkExistingPRBranch('branch');
     if ($existing_PR_branch) {
-      $initial_branch = reset( $this->exec("git -C {$this->working_dir} rev-parse --abbrev-ref HEAD") );
+      $command_result = $this->exec("git -C {$this->working_dir} rev-parse --abbrev-ref HEAD");
+      $initial_branch = reset($command_result);
       $this->passthru("git -C {$this->working_dir} fetch");
       $this->passthru("git -C {$this->working_dir} checkout $existing_PR_branch");
 
