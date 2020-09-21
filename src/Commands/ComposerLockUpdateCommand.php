@@ -185,6 +185,7 @@ EOT;
     if ($result != 0) {
       throw new TerminusException('Command `{command}` failed with exit code {status} and output {output}', ['command' => $command, 'status' => $result, 'output' => implode(PHP_EOL, $outputLines)]);
     }
+    $this->log()->info(implode(PHP_EOL, $outputLines));
     file_put_contents("{$this->working_dir}/vendor/update.log", $outputLines);
     return $outputLines;
   }
