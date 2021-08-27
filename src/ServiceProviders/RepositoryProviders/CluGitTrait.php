@@ -40,8 +40,7 @@ trait CluGitTrait {
       return $this->createGitCluProvider('\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\Bitbucket\BitbucketProvider');
     }
 
-    $gitlab_url = GitLabAPI::determineGitLabUrl($this->config);
-    if (false !== strpos($url, (empty($gitlab_url) ? 'gitlab' : $gitlab_url))) {
+    if (false !== strpos($url, GitLabAPI::determineGitLabUrl($this->config))) {
       return $this->createGitCluProvider('\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitLab\GitLabProvider');
     }
 
