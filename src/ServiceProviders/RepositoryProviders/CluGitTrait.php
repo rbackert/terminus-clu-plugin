@@ -2,6 +2,8 @@
 
 namespace Pantheon\TerminusClu\ServiceProviders\RepositoryProviders;
 
+use Pantheon\TerminusBuildTools\API\GitLab\GitLabAPI;
+
 trait CluGitTrait {
 
   public function createGitCluProvider($git_provider_class_or_alias) {
@@ -37,9 +39,12 @@ trait CluGitTrait {
     if (false !== strpos($url, 'bitbucket')) {
       return $this->createGitCluProvider('\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\Bitbucket\BitbucketProvider');
     }
-    if (false !== strpos($url, 'gitlab')) {
+
+    $gitlab_url = GitLabAPI::determineGitLabUrl($this->config);
+    if (false !== strpos($url, (empty($gitlab_url) ? 'gitlab' : $gitlab_url))) {
       return $this->createGitCluProvider('\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitLab\GitLabProvider');
     }
+
     if (false !== strpos($url, 'github')) {
       return $this->createGitCluProvider('\Pantheon\TerminusClu\ServiceProviders\RepositoryProviders\GitHub\GitHubProvider');
     }
